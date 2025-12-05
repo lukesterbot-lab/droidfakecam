@@ -16,7 +16,7 @@ gen/
 out/
 build/
 
-# Gradle files
+# Gradle cache
 .gradle/
 local.properties
 
