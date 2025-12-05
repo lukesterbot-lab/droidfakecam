@@ -1,0 +1,8 @@
+# DroidFakeCam System Properties
+# These properties are set during boot
+
+# Enable DroidFakeCam module
+persist.droidfakecam.enabled=true
+
+# Default video path
+persist.droidfakecam.video_path=/storage/emulated/0/DCIM/Camera1/

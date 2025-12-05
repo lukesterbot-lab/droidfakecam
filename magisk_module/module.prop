@@ -1,0 +1,7 @@
+id=droidfakecam
+name=DroidFakeCam
+version=v1.0.0
+versionCode=1
+author=droidfakecam
+description=Virtual camera injection module for Android - replaces camera feed with custom video/image without LSPosed
+updateJson=
