@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FakeCam Controller</string>
+    <string name="title_media">Media</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_help">Help</string>
+
+    <!-- Media Fragment -->
+    <string name="select_video">Select Video</string>
+    <string name="select_image">Select Image</string>
+    <string name="current_media">Current Media</string>
+    <string name="no_media_selected">No media selected</string>
+    <string name="apply_media">Apply to FakeCam</string>
+    <string name="media_applied">Media applied successfully!</string>
+    <string name="media_apply_failed">Failed to apply media: %s</string>
+    <string name="clear_media">Clear Media</string>
+    <string name="media_cleared">Media cleared</string>
+    <string name="preview">Preview</string>
+
+    <!-- Settings Fragment -->
+    <string name="enable_fakecam">Enable FakeCam</string>
+    <string name="enable_fakecam_summary">Toggle virtual camera on/off</string>
+    <string name="resolution_settings">Resolution Settings</string>
+    <string name="video_width">Video Width</string>
+    <string name="video_height">Video Height</string>
+    <string name="camera_options">Camera Options</string>
+    <string name="flip_front_camera">Flip Front Camera</string>
+    <string name="flip_front_camera_summary">Mirror image for front camera</string>
+    <string name="audio_sync">Audio Sync</string>
+    <string name="audio_sync_summary">Synchronize audio with video</string>
+    <string name="disable_toast">Disable Toast Messages</string>
+    <string name="disable_toast_summary">Hide module status messages</string>
+    <string name="private_dirs">Use Private Directories</string>
+    <string name="private_dirs_summary">Store files in app-private storage</string>
+    <string name="settings_saved">Settings saved</string>
+
+    <!-- Help Fragment -->
+    <string name="help_title">How to Use FakeCam Controller</string>
+    <string name="help_intro">This app controls the FakeCam Magisk module to replace your camera feed with custom video or images.</string>
+    <string name="help_step1_title">Step 1: Install Magisk Module</string>
+    <string name="help_step1_desc">Install the FakeCam Magisk module first. This module hooks into camera apps to replace the live feed.</string>
+    <string name="help_step2_title">Step 2: Select Media</string>
+    <string name="help_step2_desc">Go to the Media tab and select a video (.mp4) or image (.bmp) file from your device storage.</string>
+    <string name="help_step3_title">Step 3: Apply Settings</string>
+    <string name="help_step3_desc">Tap \"Apply to FakeCam\" to copy the file to /sdcard/DCIM/Camera1/ where the module reads it.</string>
+    <string name="help_step4_title">Step 4: Open Camera App</string>
+    <string name="help_step4_desc">Open any camera app (Camera, WhatsApp, Zoom, etc.) to see your selected content instead of the live camera feed.</string>
+    <string name="help_troubleshooting_title">Troubleshooting</string>
+    <string name="help_troubleshooting_desc">• Make sure Magisk module is installed and enabled\n• Reboot after module installation\n• Check file permissions if media is not loading\n• Use supported formats: MP4 for video, BMP for images</string>
+    <string name="help_note_title">Note</string>
+    <string name="help_note_desc">This app does not require root access, but the Magisk module requires a rooted device with Magisk installed.</string>
+
+    <!-- Permissions -->
+    <string name="permission_required">Permission Required</string>
+    <string name="storage_permission_message">Storage permission is required to select and copy media files.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="open_settings">Open Settings</string>
+
+    <!-- Errors -->
+    <string name="error_file_not_found">File not found</string>
+    <string name="error_permission_denied">Permission denied</string>
+    <string name="error_invalid_format">Invalid file format. Use MP4 for video or BMP for images.</string>
+    <string name="error_copy_failed">Failed to copy file</string>
+    <string name="error_directory_creation">Could not create output directory</string>
+
+    <!-- Validation -->
+    <string name="invalid_resolution">Invalid resolution. Width and height must be between 1 and 4096.</string>
+    <string name="resolution_applied">Resolution settings applied</string>
+
+    <!-- Service -->
+    <string name="service_connected">Connected to FakeCam service</string>
+    <string name="service_disconnected">Disconnected from FakeCam service</string>
+    <string name="module_status_active">FakeCam module is active</string>
+    <string name="module_status_inactive">FakeCam module is inactive</string>
+</resources>
