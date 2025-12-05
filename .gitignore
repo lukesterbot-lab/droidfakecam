@@ -45,3 +45,5 @@ local.properties
 *.bmp
 *.jpg
 *.png
+
+app/build/

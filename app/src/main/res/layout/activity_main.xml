@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/targetDirLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Target dir: /sdcard/DCIM/Camera1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Source video path (copied to virtual.mp4):"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+        <EditText
+            android:id="@+id/videoPathInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="/sdcard/Download/custom.mp4"
+            android:inputType="textUri" />
+
+        <Button
+            android:id="@+id/copyVideoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Copy video to virtual.mp4" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Source image path (copied to 1000.bmp):"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+        <EditText
+            android:id="@+id/imagePathInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="/sdcard/Download/placeholder.bmp"
+            android:inputType="textUri" />
+
+        <Button
+            android:id="@+id/copyImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Copy image to 1000.bmp" />
+
+        <Button
+            android:id="@+id/enableButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Enable virtual feed (remove disable.jpg)" />
+
+        <Button
+            android:id="@+id/disableButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Disable virtual feed (touch disable.jpg)" />
+
+        <Button
+            android:id="@+id/noToastButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Toggle no_toast.jpg" />
+
+        <Button
+            android:id="@+id/privateDirButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Toggle private_dir.jpg" />
+
+        <TextView
+            android:id="@+id/logView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:background="#EEEEEE"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+</ScrollView>

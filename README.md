@@ -231,3 +231,49 @@ This project is provided for educational and research purposes. Use at your own 
 - Video and image file support
 - Resolution matching and frame transformation
 - Configuration via control files
+
+## How to turn `android_virtual_cam` into a Magisk module + APK (no LSPosed)
+
+The upstream project at `https://github.com/w2016561536/android_virtual_cam` can be repackaged with **only a rooted device and Magisk/Zygisk** (no LSPosed) by following a fully automatable flow. You can have an AI agent drive each step using the commands/scripts below.
+
+### 1) Generate a minimal Magisk/Zygisk shim
+
+1. Ask your AI to clone the upstream repo and copy its native hook sources into `module/jni/` (matching the layout shown in the tree above). The entry point should expose `zygisk_main.cpp` that registers your camera hooks.
+2. Point the Android.mk/Application.mk configs at the copied sources so `./build.sh` can build `libdroidfakecam.so` for all ABIs. Because this module already ships the Magisk metadata (`module.prop`, `customize.sh`, `service.sh`), no LSPosed-specific config is required.
+3. Run `ANDROID_NDK=/path/to/ndk ./build.sh` to produce `out/DroidFakeCam-v1.0.0.zip`, then sideload it from Magisk Manager. The module installs the native library into `/data/adb/modules/droidfakecam/zygisk/` and requires Zygisk to be enabled.
+
+### 2) Build the included controller APK (root-aware)
+
+This repository now ships a minimal Android app in `/app` that uses root shell commands to manage the control files consumed by the Magisk/Zygisk module. The UI lets you:
+
+- Copy a chosen video into `/sdcard/DCIM/Camera1/virtual.mp4`
+- Copy an image into `/sdcard/DCIM/Camera1/1000.bmp`
+- Touch/remove `disable.jpg`, `no_toast.jpg`, and `private_dir.jpg`
+
+Build it with Android Studio (or a local Gradle install) on a machine with internet access:
+
+```bash
+# From the repo root
+gradle :app:assembleDebug   # or use ./gradlew once Android Studio generates the wrapper
+
+# Install on device
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+On-device usage:
+
+1. Grant root when prompted so the app can run `su -c` commands.
+2. Enter the source paths for your video/image and tap the copy buttons to place them where the module expects.
+3. Use the toggle buttons to create/remove control files; logs appear at the bottom of the screen.
+
+### 3) End-to-end automation with AI
+
+You can ask your AI agent to:
+
+- Clone this repo and the upstream source
+- Copy/adapt the native hook code into `module/jni/`
+- Run `./build.sh` (with `ANDROID_NDK` set) to emit the Magisk ZIP
+- Scaffold the controller APK and run `./gradlew assembleDebug`
+- Produce ready-to-install artifacts without manual edits
+
+Because everything is scriptable and uses Zygisk, no LSPosed configuration or Riru modules are needed. The Magisk zip replaces camera output at the framework level, while the optional APK just manages files.
