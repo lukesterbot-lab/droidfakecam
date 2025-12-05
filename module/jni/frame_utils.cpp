@@ -361,8 +361,14 @@ bool rgbToNv21(const uint8_t* rgb, uint8_t* nv21, int width, int height) {
         return false;
     }
     
+    // Ensure even dimensions for proper UV subsampling
+    if (width % 2 != 0 || height % 2 != 0) {
+        LOGE("rgbToNv21: Width and height must be even");
+        return false;
+    }
+    
     int ySize = width * height;
-    int uvSize = width * height / 2;
+    // UV plane has interleaved VU pairs, size = width * height / 2
     
     uint8_t* yPlane = nv21;
     uint8_t* uvPlane = nv21 + ySize;
@@ -379,11 +385,17 @@ bool rgbToNv21(const uint8_t* rgb, uint8_t* nv21, int width, int height) {
             yPlane[j * width + i] = clamp(y);
             
             // RGB to UV (sample every 2x2 block)
+            // NV21 format: VU interleaved, one VU pair per 2x2 pixel block
             if (j % 2 == 0 && i % 2 == 0) {
                 int u = ((-38 * r - 74 * g + 112 * b + 128) >> 8) + 128;
                 int v = ((112 * r - 94 * g - 18 * b + 128) >> 8) + 128;
                 
-                int uvIdx = (j / 2) * width + i;
+                // Calculate index in UV plane: (j/2) * width + i gives VU pair index
+                // Each row in UV plane has width/2 VU pairs (width bytes total)
+                int uvRow = j / 2;
+                int uvCol = i;  // i is even, so this is the start of a VU pair
+                int uvIdx = uvRow * width + uvCol;
+                
                 uvPlane[uvIdx] = clamp(v);      // V first in NV21
                 uvPlane[uvIdx + 1] = clamp(u);  // Then U
             }

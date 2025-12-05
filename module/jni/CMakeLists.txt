@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Android NDK minimum API level
-set(ANDROID_PLATFORM android-26)
+# Note: Keep in sync with Application.mk APP_PLATFORM
+set(ANDROID_MIN_API_LEVEL 26)
 
 # Module name
 set(MODULE_NAME droidfakecam)

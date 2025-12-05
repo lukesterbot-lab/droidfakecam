@@ -131,9 +131,9 @@ private:
             }
         }
         
-        // Hook all apps for now (can be made configurable)
-        // This allows any app using camera APIs to be hooked
-        return true;
+        // Only hook apps in the whitelist
+        // For broader coverage, users can modify the camera_apps list
+        return false;
     }
 };
 

@@ -357,8 +357,11 @@ bool MediaReader::loadBmpImage(const std::string& path) {
         return false;
     }
     
+    // BMP file signature constant
+    static constexpr uint16_t BMP_SIGNATURE = 0x4D42;  // 'BM'
+    
     // Validate signature
-    if (fileHeader.signature != 0x4D42) { // 'BM'
+    if (fileHeader.signature != BMP_SIGNATURE) {
         LOGE("Invalid BMP signature: 0x%04X", fileHeader.signature);
         fclose(file);
         return false;

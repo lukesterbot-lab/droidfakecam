@@ -153,6 +153,7 @@ int hooked_AImage_getPlaneData(void* image, int planeIdx,
     }
     
     // If successful and we have a replacement frame, inject it
+    // Note: Mutex protection ensures thread-safe access to global frame storage
     if (result == 0 && data && *data && dataLength && *dataLength > 0) {
         std::lock_guard<std::mutex> lock(g_mutex);
         if (g_injectedFrame && g_injectedFrameSize > 0) {
