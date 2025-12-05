@@ -1,0 +1,7 @@
+id=droidfakecam
+name=DroidFakeCam - Virtual Camera
+version=v1.0.0
+versionCode=1
+author=Educational Research
+description=Zygisk module for virtual camera feed injection. For educational and research purposes only.
+updateJson=
