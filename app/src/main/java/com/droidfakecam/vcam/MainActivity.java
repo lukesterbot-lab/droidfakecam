@@ -17,9 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -113,6 +111,11 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Get the Camera1 directory path.
+     * Uses public external storage intentionally so users can easily access and manage files.
+     */
+    @SuppressWarnings("deprecation")
     private String getCamera1Path() {
         return Environment.getExternalStorageDirectory().getAbsolutePath() + CAMERA1_DIR;
     }
@@ -221,10 +224,7 @@ public class MainActivity extends Activity {
         try {
             startActivity(intent);
         } catch (Exception e) {
-            // Fallback: try to open with file manager
-            Intent fileManager = new Intent(Intent.ACTION_GET_CONTENT);
-            fileManager.setType("*/*");
-            fileManager.addCategory(Intent.CATEGORY_OPENABLE);
+            // Show toast with folder path since we cannot open the folder directly
             Toast.makeText(this, getString(R.string.folder_hint, path), Toast.LENGTH_LONG).show();
         }
     }
