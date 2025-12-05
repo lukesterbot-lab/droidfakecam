@@ -1,0 +1,47 @@
+# DroidFakeCam - Build and Output Artifacts
+
+# Build directories
+build/
+out/
+
+# NDK build outputs
+obj/
+libs/
+
+# Compiled libraries (they go in module/zygisk/)
+*.so
+!module/zygisk/*.so
+
+# CMake build artifacts
+CMakeFiles/
+cmake_install.cmake
+CMakeCache.txt
+Makefile
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Gradle (if using Android Studio)
+.gradle/
+local.properties
+*.apk
+
+# Test media files
+*.mp4
+*.bmp
+*.jpg
+*.png
