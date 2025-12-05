@@ -242,13 +242,29 @@ The upstream project at `https://github.com/w2016561536/android_virtual_cam` can
 2. Point the Android.mk/Application.mk configs at the copied sources so `./build.sh` can build `libdroidfakecam.so` for all ABIs. Because this module already ships the Magisk metadata (`module.prop`, `customize.sh`, `service.sh`), no LSPosed-specific config is required.
 3. Run `ANDROID_NDK=/path/to/ndk ./build.sh` to produce `out/DroidFakeCam-v1.0.0.zip`, then sideload it from Magisk Manager. The module installs the native library into `/data/adb/modules/droidfakecam/zygisk/` and requires Zygisk to be enabled.
 
-### 2) Build a companion Android APK (optional controller)
+### 2) Build the included controller APK (root-aware)
 
-If you want an APK UI (e.g., to toggle the virtual feed or select media files) without LSPosed:
+This repository now ships a minimal Android app in `/app` that uses root shell commands to manage the control files consumed by the Magisk/Zygisk module. The UI lets you:
 
-1. Create a simple Android app that reads/writes the control files used by the module (`/sdcard/DCIM/Camera1/virtual.mp4`, `1000.bmp`, `disable.jpg`, etc.).
-2. The APK does not need root permissions—file access via SAF or `WRITE_EXTERNAL_STORAGE` (on legacy devices) is sufficient. Avoid runtime hook frameworks; all heavy lifting stays in the Magisk module.
-3. Automate the app creation by prompting your AI to scaffold a basic Jetpack Compose or XML project, add buttons to place/remove the control files, and export an unsigned debug APK. Build with `./gradlew assembleDebug` on a workstation, then `adb install app/build/outputs/apk/debug/app-debug.apk`.
+- Copy a chosen video into `/sdcard/DCIM/Camera1/virtual.mp4`
+- Copy an image into `/sdcard/DCIM/Camera1/1000.bmp`
+- Touch/remove `disable.jpg`, `no_toast.jpg`, and `private_dir.jpg`
+
+Build it with Android Studio (or a local Gradle install) on a machine with internet access:
+
+```bash
+# From the repo root
+gradle :app:assembleDebug   # or use ./gradlew once Android Studio generates the wrapper
+
+# Install on device
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+On-device usage:
+
+1. Grant root when prompted so the app can run `su -c` commands.
+2. Enter the source paths for your video/image and tap the copy buttons to place them where the module expects.
+3. Use the toggle buttons to create/remove control files; logs appear at the bottom of the screen.
 
 ### 3) End-to-end automation with AI
 

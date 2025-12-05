@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DroidFakeCam Controller</string>
+    <string name="target_dir">/sdcard/DCIM/Camera1</string>
+</resources>
