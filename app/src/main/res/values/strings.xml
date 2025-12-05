@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DroidFakeCam</string>
+    <string name="app_description">Virtual Camera Injection - Magisk Module Controller</string>
+
+    <!-- Status -->
+    <string name="module_status_title">Module Status</string>
+    <string name="module_status_checking">Checking…</string>
+    <string name="module_status_active">✓ Magisk module is active</string>
+    <string name="module_status_inactive">⚠ Magisk module not detected - Install the module first</string>
+    <string name="status_video_found">✓ virtual.mp4 found - Ready for camera replacement</string>
+    <string name="status_video_not_found">✗ virtual.mp4 not found - Please add your video</string>
+    <string name="current_path">Path: %1$s</string>
+
+    <!-- Actions -->
+    <string name="actions_title">Quick Actions</string>
+    <string name="btn_open_folder">Open Camera1 Folder</string>
+    <string name="btn_select_video">Select Video File</string>
+    <string name="btn_github">View on GitHub</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="switch_disable">Temporarily disable module</string>
+    <string name="switch_force_show">Force show permission warnings</string>
+    <string name="switch_play_sound">Play video sound</string>
+    <string name="switch_private_dir">Force use private directory per app</string>
+    <string name="switch_disable_toast">Disable toast notifications</string>
+
+    <!-- Instructions -->
+    <string name="instructions_title">How to Use</string>
+    <string name="instructions_text">1. Install the DroidFakeCam Magisk module\n2. Reboot your device\n3. Place your replacement video as \'virtual.mp4\' in /DCIM/Camera1/\n4. Open any camera app - it will show your video instead\n5. For photos, add \'1000.bmp\' with matching resolution\n\nNote: Video resolution should match what the app requests (shown in toast)</string>
+
+    <!-- Permissions -->
+    <string name="permission_title">Permission Required</string>
+    <string name="permission_message_storage">Storage permission is needed to manage configuration files and replacement videos.</string>
+    <string name="permission_message_all_files">All Files Access is needed on Android 11+ to manage the Camera1 folder.</string>
+    <string name="grant">Grant</string>
+    <string name="cancel">Cancel</string>
+    <string name="permission_denied">Permission denied. Some features may not work.</string>
+
+    <!-- Misc -->
+    <string name="error_file_operation">Error performing file operation</string>
+    <string name="folder_hint">Camera1 folder: %1$s</string>
+    <string name="video_selected_hint">Copy this video as \'virtual.mp4\' to: %1$s</string>
+    <string name="warning_text">⚠ DO NOT USE FOR ILLEGAL PURPOSES\nYou are responsible for all consequences of using this app.</string>
+</resources>
