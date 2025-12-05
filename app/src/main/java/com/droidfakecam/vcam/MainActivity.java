@@ -3,6 +3,7 @@ package com.droidfakecam.vcam;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -165,10 +166,10 @@ public class MainActivity extends Activity {
         File virtualVideo = new File(dir, "virtual.mp4");
         if (virtualVideo.exists()) {
             statusText.setText(R.string.status_video_found);
-            statusText.setTextColor(getColor(android.R.color.holo_green_dark));
+            statusText.setTextColor(getColorCompat(android.R.color.holo_green_dark));
         } else {
             statusText.setText(R.string.status_video_not_found);
-            statusText.setTextColor(getColor(android.R.color.holo_red_dark));
+            statusText.setTextColor(getColorCompat(android.R.color.holo_red_dark));
         }
     }
 
@@ -180,10 +181,22 @@ public class MainActivity extends Activity {
         TextView moduleStatusText = findViewById(R.id.text_module_status);
         if (isModuleActive) {
             moduleStatusText.setText(R.string.module_status_active);
-            moduleStatusText.setTextColor(getColor(android.R.color.holo_green_dark));
+            moduleStatusText.setTextColor(getColorCompat(android.R.color.holo_green_dark));
         } else {
             moduleStatusText.setText(R.string.module_status_inactive);
-            moduleStatusText.setTextColor(getColor(android.R.color.holo_orange_dark));
+            moduleStatusText.setTextColor(getColorCompat(android.R.color.holo_orange_dark));
+        }
+    }
+
+    /**
+     * Helper method to get color compatible with API < 23
+     */
+    @SuppressWarnings("deprecation")
+    private int getColorCompat(int colorResId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return getColor(colorResId);
+        } else {
+            return getResources().getColor(colorResId);
         }
     }
 
@@ -226,7 +239,11 @@ public class MainActivity extends Activity {
     private void openGithub() {
         Intent intent = new Intent(Intent.ACTION_VIEW, 
             Uri.parse("https://github.com/lukesterbot-lab/droidfakecam"));
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No browser app available", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
